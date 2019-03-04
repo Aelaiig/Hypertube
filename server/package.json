@@ -1,0 +1,50 @@
+{
+  "name": "test_structHypertube",
+  "version": "1.0.0",
+  "description": "Test de stucture pour Hypertube",
+  "main": "app.js",
+  "scripts": {
+    "start": "npm install && nodemon src/app.js",
+    "dev": "./node_modules/nodemon/bin/nodemon.js src/app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.4.8",
+    "bcrypt": "^3.0.4",
+    "child_process": "^1.0.2",
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
+    "dotenv": "^6.2.0",
+    "fs": "0.0.1-security",
+    "graphql": "^0.13.2",
+    "graphql-yoga": "^1.17.4",
+    "jsonwebtoken": "^8.5.0",
+    "localstorage": "^1.0.1",
+    "moment": "^2.24.0",
+    "mongoimport": "^1.0.6",
+    "mongoose": "^5.4.16",
+    "moviedb-scrapper-hypertube": "^1.3.5",
+    "node-pre-gyp": "^0.12.0",
+    "node-schedule": "^1.3.2",
+    "nodemailer": "^4.6.7",
+    "nodemon": "^1.18.10",
+    "opensubtitles-api": "^5.0.1",
+    "passport": "^0.4.0",
+    "passport-github": "^1.1.0",
+    "passport-google-oauth20": "^1.0.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "passport-oauth2": "^1.4.0",
+    "request": "^2.88.0",
+    "torrentfinder-hypertube": "^2.4.4"
+  },
+  "nodemonConfig": {
+    "ext": "js,json,graphql"
+  },
+  "devDependencies": {
+    "eslint": "^5.14.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0"
+  }
+}

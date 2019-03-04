@@ -1,0 +1,68 @@
+{
+  "144p": {
+    "video": {
+      "size": "256x?",
+      "codec": "libvpx",
+      "bitrate": "512k"
+    },
+    "audio": {
+      "codec": "libvorbis",
+      "bitrate": "64k"
+    }
+  },
+  "240p": {
+    "video": {
+      "size": "426x?",
+      "codec": "libvpx",
+      "bitrate": "1024k"
+    },
+    "audio": {
+      "codec": "libvorbis",
+      "bitrate": "96k"
+    }
+  },
+  "360p": {
+    "video": {
+      "size": "640x?",
+      "codec": "libvpx",
+      "bitrate": "2048k"
+    },
+    "audio": {
+      "codec": "libvorbis",
+      "bitrate": "128k"
+    }
+  },
+  "480p": {
+    "video": {
+      "size": "854x?",
+      "codec": "libvpx",
+      "bitrate": "3072k"
+    },
+    "audio": {
+      "codec": "libvorbis",
+      "bitrate": "192k"
+    }
+  },
+  "720p": {
+    "video": {
+      "size": "1280x?",
+      "codec": "libvpx",
+      "bitrate": "4096k"
+    },
+    "audio": {
+      "codec": "libvorbis",
+      "bitrate": "256k"
+    }
+  },
+  "1080p": {
+    "video": {
+      "size": "1920x?",
+      "codec": "libvpx",
+      "bitrate": "5120k"
+    },
+    "audio": {
+      "codec": "libvorbis",
+      "bitrate": "448k"
+    }
+  }
+}

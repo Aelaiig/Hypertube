@@ -1,0 +1,143 @@
+scalar Date
+
+type Query {
+	test: String,
+	miniMovies(nbPage: Int): [miniMovies]
+	movieInfo(movieId: String): movieInfo
+	getBackgrounds: String!
+	getAvatars: [String]!
+	selectedAvatar: String!
+	getUserInfo(id: String!): UserInfo
+	confirmNewEmail(newEmailToken: String!): String
+	signIn(login: String!, password: String!): String!
+    askToken(authKey: String!): String!
+	getComments(movieId: Int!): CommentResponse!
+  	sendResetPassword(email: String!): String!
+	oneMovie(movieTitle: String): [miniMovies]
+	hash(torrent: String, tipo: String, movieId: String, name: String, year: Int): String
+}
+
+type Mutation {
+	signUp(
+		login: String!, 
+		firstname: String!,
+		lastname: String!,
+		password: String!,
+		email: String!,
+		picture: String!): User
+	changeGeneral(id: String!, key: String!, value: String!): TokenResponse
+	changePassword(id: String!, password: String!, newPassword: String!): String!
+	changeEmail(id: String!, password: String!, newEmail: String!): String!
+	signUpOmniauth(
+		authKey: String!,
+		login: String!, 
+		firstname: String!,
+		lastname: String!,
+		email: String!,
+		picture: String!): String!
+	submitComment(movieId: Int!, comment: String!): Int!
+  	resetPassword(authKey: String!, password: String!): String!
+	movieSee(movieId: String): String
+}
+
+type TokenResponse {
+	newToken: String!
+	message: String!
+}
+
+type User {
+	strategy: String,
+	strategyId: String,
+	id: String!
+	login: String!
+	firstname: String!
+	lastname: String!
+	email: String!
+	password: String
+	picture: String!
+	updatedAt: Date
+	createdAt: Date
+}
+
+type UserInfo {
+	login: String!
+	firstname: String!
+	lastname: String!
+	picture: String!
+}
+
+type miniMovies {
+	title: String!
+	id: Int!
+	href: String!
+	hrefPoster: String
+	releaseDate: Int
+	score: Int
+	genresReturn: [String]
+	see: Boolean
+}
+
+type movieInfo {
+	id: String
+	title: String!
+    releaseDate: Int
+    duration: String
+    recap: String
+	score: Int
+    hrefBackdrop: String
+	hrefPoster: String
+	casting: Casting
+	genres: [String]
+	recommended: [recommended]
+	torrentsInfo: [torrents]
+}
+
+type Casting {
+	actors: [Actor]
+	crew: [Crew]
+}
+
+type Actor {
+	actorName: String
+	characterName: String
+	hrefPhoto: String
+}
+
+type Crew {
+	crewName: String
+	crewRole: String
+}
+
+type recommended {
+	title: String
+	hrefPoster: String
+	score: Int
+}
+
+type torrents {
+	title: String
+	seeders: Int
+	leechers: Int
+	quality: String
+	dlLink: String
+	ratio: Int
+	hash: String
+}
+
+type CommentResponse {
+	movieId: Int!
+	comments: [Comment]!
+}
+
+type Comment {
+	id: String
+	comment: String
+	login: String
+	picture: String
+}
+
+type dlLink {
+	english: String
+	spanish: String
+	french: String
+}

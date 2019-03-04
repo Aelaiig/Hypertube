@@ -1,0 +1,67 @@
+version: '2.1'
+services:
+  server-stream:
+    build:
+      context: ./server_stream/
+    volumes:
+      - ./server_stream:/home/node/app
+    ports:
+      - "3000:3000"
+    command: npm start
+    depends_on:
+      # - mongo-seed
+      database:
+        condition: service_healthy
+    environment:
+      - SERVERADDRESS=http://${HOSTNAME}
+  server:
+    build:
+      context: ./server/
+    ports:
+      - "5500:5500"
+    command: npm start
+    volumes:
+      - ./server/:/usr/server
+      - ./client/:/usr/client
+      - /user/server/node_modules
+    depends_on:
+      # - mongo-seed
+      - database
+    env_file: ./server/.env
+    environment:
+      - SERVER_BACK=http://${HOSTNAME}:5500
+      - SERVER_CLIENT=http://${HOSTNAME}:8080
+  database:
+    image: bitnami/mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./database:/data/db
+    healthcheck:
+      test: "exit 0"
+  client:
+    build: 
+      context: ./client/
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./client/:/usr/client
+      - /user/client/node_modules
+    # env_file: ./client/.env.development
+    environment:
+      - VUE_APP_URI=http://${HOSTNAME}:5500
+      - VUE_APP_SERVER_PLAYER=http://${HOSTNAME}:3000
+    
+    command: npm run-script serve
+  # mongo-seed:
+  #   build:
+  #     context: ./mongoSeed/
+  #   links:
+  #     - database
+  #   volumes:
+  #     - ./mongoSeed:/mongoSeed
+  #   command:
+  #     /mongoSeed/import.sh
+  #   depends_on:
+  #     - database
+

@@ -1,0 +1,161 @@
+query GetBackgrounds {
+	getBackgrounds
+}
+
+query GetAvatars {
+	getAvatars
+}
+
+query GetUserInfo($id: String!) {
+  getUserInfo(id: $id) {
+    login
+    firstname
+    lastname
+    picture
+  }
+}
+
+query SelectedAvatar {
+	selectedAvatar
+}
+
+query Test {
+	test
+}
+
+query SignIn($login: String!, $password:String!) {
+	signIn(login: $login, password: $password)
+}
+
+query AskToken($authKey: String!) {
+  askToken(authKey: $authKey)
+}
+
+query SendResetPassword($email: String!) {
+  sendResetPassword(email: $email)
+}
+
+mutation ResetPassword($authKey: String!, $password: String!) {
+  resetPassword(authKey: $authKey, password: $password)
+}
+
+mutation SignUp($login: String!, $firstname: String!, $lastname:String!, $email: String!, $password: String!, $picture: String!) {
+  signUp(login: $login, firstname: $firstname, lastname: $lastname, email: $email, password: $password, picture: $picture) {
+    id
+    login
+    firstname
+    lastname
+    email
+    password
+    picture
+  }
+}
+
+mutation ChangeGeneral($id: String!, $key: String!, $value: String!) {
+  changeGeneral(id: $id, key: $key, value: $value) {
+    newToken
+    message
+  }
+}
+
+mutation ChangePassword($id: String!, $password: String!, $newPassword: String!) {
+  changePassword(id: $id, password: $password, newPassword: $newPassword)
+}
+
+mutation ChangeEmail($id: String!, $password: String!, $newEmail: String!), {
+  changeEmail(id: $id, password: $password, newEmail: $newEmail)
+}
+
+query ConfirmNewEmail($newEmailToken: String!) {
+  confirmNewEmail(newEmailToken: $newEmailToken)
+}
+
+query GetComments($movieId: Int!) {
+  getComments(movieId: $movieId) {
+    movieId
+    comments {
+      id
+      comment
+      picture
+      login
+    }
+  }
+}
+
+mutation SubmitComment($movieId: Int!, $comment: String!) {
+  submitComment(movieId: $movieId, comment: $comment)
+}
+
+query GetMovies($nbPage: Int) {
+  miniMovies(nbPage: $nbPage) {
+    id
+    title
+    hrefPoster
+    releaseDate
+    score
+    genresReturn
+    see
+  }
+}
+
+query GetMovieInfo ($movieId: String){
+  movieInfo(movieId: $movieId) {
+    id
+    title
+    releaseDate
+    hrefPoster
+    duration
+    recap
+    score
+    hrefBackdrop
+    casting {
+      actors {
+        actorName
+        characterName
+        hrefPhoto
+      }
+      crew {
+        crewName
+        crewRole
+      }
+    }
+    genres
+    recommended {
+      title
+      hrefPoster
+      score
+    }
+    torrentsInfo {
+      title
+      seeders
+      leechers
+      quality
+      dlLink
+      ratio
+      hash
+    }
+  }
+}
+
+mutation SignUpOmniauth($authKey: String!, $login: String!, $firstname: String!, $lastname:String!, $email: String!, $picture: String!) {
+  signUpOmniauth(authKey: $authKey, login: $login, firstname: $firstname, lastname: $lastname, email: $email, picture: $picture)
+}
+
+query GetOneMovie($movieTitle: String) {
+  oneMovie (movieTitle: $movieTitle) {
+    title
+    id
+    genresReturn
+    hrefPoster
+    releaseDate
+    score
+  }
+}
+
+query GetHash($torrent: String, $tipo: String, $movieId: String, $name: String, $year: Int) {
+  hash(torrent: $torrent, tipo: $tipo, movieId: $movieId, name: $name, year: $year)
+}
+
+mutation movieSee($movieId: String) {
+  movieSee(movieId: $movieId)
+}
